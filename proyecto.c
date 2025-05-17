@@ -4,7 +4,7 @@ bebida a la que quieras ingresar la cantidad de litros que consume el pueblo... 
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<string.h>
 int main()
 {
     int i, j, opcion;
@@ -16,9 +16,10 @@ int main()
     char* nombre[8] = {
         "Natural", "Refresco", "Vino", "Cerveza",
         "Whisky", "Licores", "Energeticos", "Combinados"
-    };
+};
 
-    do {
+    do 
+    {
         printf("\n------ MENÚ PRINCIPAL ------\n");
         printf("1. Capturar datos de bebidas por pueblo\n");
         printf("2. Mostrar bebida más consumida en total\n");
@@ -28,11 +29,13 @@ int main()
         printf("Seleccione una opción: ");
         scanf("%d", &opcion);
 
-        switch(opcion) {
+        switch(opcion) 
+        {
             case 1:
                 do {
                     printf("¿Qué pueblo deseas capturar? (0 a 99, o -1 para salir): ");
-                    if (scanf("%d", &i) != 1) {
+                    if (scanf("%d", &i) != 1)
+                    {
                         printf("Entrada no válida. Cancelando captura.\n");
                         while(getchar() != '\n');
                         break;
@@ -44,7 +47,8 @@ int main()
                         for (j=0; j<8; j++)
                             printf("%d - %s\n", j, nombre[j]);
                         printf("Ingresa la bebida (0 a 7) o -1 para terminar: ");
-                        if (scanf("%d", &var1) != 1) {
+                        if (scanf("%d", &var1) != 1) 
+                        {
                             printf("Entrada no válida.\n");
                             while(getchar() != '\n');
                             break;
@@ -52,40 +56,49 @@ int main()
 
                         while(var1 != -1)
                         {
-                            if(var1 >= 0 && var1 < 8) {
+                            if(var1 >= 0 && var1 < 8) 
+                            {
                                 printf("Cantidad en litros para %s: ", nombre[var1]);
-                                if (scanf("%d", &var2) != 1) {
+                                if (scanf("%d", &var2) != 1) 
+                                {
                                     printf("Entrada no válida. Se cancela esta bebida.\n");
                                     while(getchar() != '\n');
                                     break;
                                 }
                                 arr[i][var1] += var2;
-                            } else {
-                                printf("Bebida no válida (debe estar entre 0 y 7).\n");
                             }
+                            else 
+                                {
+                                printf("Bebida no válida (debe estar entre 0 y 7).\n");
+                                }
 
                             printf("Ingresa otra bebida o -1 para terminar: ");
-                            if (scanf("%d", &var1) != 1) {
+                            if (scanf("%d", &var1) != 1) 
+                            {
                                 printf("Entrada no válida.\n");
                                 while(getchar() != '\n');
                                 break;
                             }
                         }
                     }
-                    else if(i != -1) {
+                    else if(i != -1) 
+                    {
                         printf("Pueblo no válido.\n");
                     }
-                } while(i != -1);
+                }
+                while(i != -1);
                 break;
 
             case 2:
                 for(i = 0; i < 8; i++) total[i] = 0;
                 max = 0;
                 for(j = 0; j < 8; j++) {
-                    for(i = 0; i < 100; i++) {
+                    for(i = 0; i < 100; i++) 
+                    {
                         total[j] += arr[i][j];
                     }
-                    if(total[j] > max) {
+                    if(total[j] > max) 
+                    {
                         max = total[j];
                         bebida = j;
                     }
@@ -96,14 +109,18 @@ int main()
             case 3:
                 for(i = 0; i < 8; i++) total2[i] = 0;
                 max2 = 0;
-                for(i = 0; i < 8; i++) {
-                    if(i != 1 && i != 6) {
+                for(i = 0; i < 8; i++) 
+                {
+                    if(i != 1 && i != 6)
+                    {
                         acum = 0;
-                        for(j = 0; j < 100; j++) {
+                        for(j = 0; j < 100; j++)
+                        {
                             acum += arr[j][i];
                         }
                         total2[i] = acum;
-                        if(acum > max2) {
+                        if(acum > max2) 
+                        {
                             max2 = acum;
                             bebida2 = i;
                         }
@@ -114,15 +131,19 @@ int main()
 
             case 4:
                 max3 = 0;
-                for(i = 0; i < 100; i++) {
+                for(i = 0; i < 100; i++)
+                {
                     acum2 = 0;
-                    for(j = 0; j < 8; j++) {
-                        if(j != 1 && j != 6) {
+                    for(j = 0; j < 8; j++) 
+                    {
+                        if(j != 1 && j != 6)
+                        {
                             acum2 += arr[i][j];
                         }
                     }
                     total3[i] = acum2;
-                    if(acum2 > max3) {
+                    if(acum2 > max3) 
+                    {
                         max3 = acum2;
                         pueblo = i;
                     }
@@ -131,7 +152,7 @@ int main()
                 break;
 
             case 5:
-                printf("Fin del programa\n");
+                printf("Saliendo del programa...\n");
                 break;
 
             default:
